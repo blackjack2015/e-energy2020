@@ -1,5 +1,9 @@
 from extractor import *
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
+import os
+
+OUTPUT_PATH='figures'
 
 MARKERS = ['^', '<', 'o', 's']
 HATCHES = ['//', '--', '\\\\', '||', '++', '--', '..', '++', '\\\\']
@@ -11,7 +15,7 @@ def plot_batch_throughput(data, save_filename=None):
     fig, ax = plt.subplots(figsize = (8, 6))
 
     lengths = ['a', 'b', 'c', 'd']
-    x_axis = list(selected_df['batchsize'].drop_duplicates())
+    x_axis = list(data['batchsize'].drop_duplicates())
     x_axis.sort()
     lines = []
     for idx, length in enumerate(lengths):
