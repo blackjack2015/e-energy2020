@@ -23,11 +23,12 @@ def extract_data(filename):
 
     wb = load_workbook(filename, data_only=True)
 
+    batchsizes = [1, 8, 32, 64, 128, 256, 512, 1024]
+
     df = extract_batch(wb['bs1'], 1)
-    df = df.append(extract_batch(wb['bs8'], 8))
-    df = df.append(extract_batch(wb['bs32'], 32))
-    df = df.append(extract_batch(wb['bs64'], 64))
-    df = df.append(extract_batch(wb['bs128'], 128))
+
+    for idx in range(1, len(batchsizes)):
+        df = df.append(extract_batch(wb['bs%d' % batchsizes[idx]], batchsizes[idx]))
     print(df)
 
     return df 
