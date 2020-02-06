@@ -5,7 +5,7 @@ import os
 
 OUTPUT_PATH='figures'
 
-MARKERS = ['^', '<', 'o', 's']
+MARKERS = ['^', '<', 'o', 's', '+', 'x', 'D', '|']
 HATCHES = ['//', '--', '\\\\', '||', '++', '--', '..', '++', '\\\\']
 GRAYS = ['#2F4F4F', '#808080', '#A9A9A9', '#778899', '#DCDCDC', '#556677', '#1D3E3E', '#808080', '#DCDCDC']
 COLORS = ['b', 'g', 'r', 'c', 'm', 'y', 'k', 'w']
@@ -14,7 +14,7 @@ def plot_batch(data, attribute="throughput", keyword="token/s", save_filename=No
 
     fig, ax = plt.subplots(figsize = (8, 6))
 
-    lengths = ['a', 'b', 'c', 'd']
+    lengths = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     x_axis = list(data['batchsize'].drop_duplicates())
     x_axis.sort()
     lines = []
@@ -26,7 +26,7 @@ def plot_batch(data, attribute="throughput", keyword="token/s", save_filename=No
         tx_axis = x_axis[:len(tmp_data)]
         #lines.append(ax.plot(x_axis, tmp_data, linewidth = 1.5, color = COLORS[idx], marker = MARKERS[idx], markersize = 14, markerfacecolor = 'none', label = kernel+"(%s)" % kl_abbr))
         #lines.append(ax.plot(x_axis, tmp_data, linewidth = 1.5, color = COLORS[idx], marker = MARKERS[idx], markersize = 14, markeredgecolor='k', markerfacecolor = 'none', label = kernel+"(%s)" % kl_abbr))
-        lines.append(ax.plot(tx_axis, tmp_data, linewidth = 1.5, color = COLORS[idx], marker = MARKERS[idx], markersize = 14, markeredgecolor='k', markerfacecolor = 'none', label = length))
+        lines.append(ax.plot(tx_axis, tmp_data, linewidth = 1.5, color = COLORS[idx], marker = MARKERS[idx], markersize = 12, markeredgecolor='k', markerfacecolor = 'none', label = length))
 
     ax.set_ylabel(keyword, size = 24)
     ax.set_xlabel("Batch Size", size = 24)
